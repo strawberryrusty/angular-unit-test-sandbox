@@ -31,6 +31,6 @@ describe('VoteComponent', () => {
     //Act - calling a method of function
     component.downVote();
     //assertion -
-    expect(component.totalVotes).toBe(1);
+    expect(component.totalVotes).toBe(-1);
   });
 });
