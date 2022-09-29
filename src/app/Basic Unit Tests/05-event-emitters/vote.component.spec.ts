@@ -1,21 +1,21 @@
-import { VoteComponent } from './vote.component'; 
+import { VoteComponent } from './vote.component';
 
 describe('VoteComponent', () => {
-  var component: VoteComponent; 
+  var component: VoteComponent;
 
   beforeEach(() => {
     component = new VoteComponent();
   });
 
-  it('should raise voteChanged event when upvoted', () => {
-    let tv = null;
-    component.voteChanged.subscribe(totalVotes => tv = totalVotes );
+  it('should raise the voteChange event when upvoted', () => {
+    let totalVotes = null;
+    component.voteChanged.subscribe(tv => {
+      totalVotes = tv });
 
     component.upVote();
 
-    // expect(tv).not.toBeNull();
-    // be more specific with the eventEmitter tests
-    expect(tv).toBe(1);
-
+    //assert
+    // expect(totalVotes).not.toBeNull(); //this is too generic, there could be a bug which doesnt pass the number in the event emitter
+    expect(totalVotes).toBe(1);
   });
 });
