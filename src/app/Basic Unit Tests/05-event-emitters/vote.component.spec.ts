@@ -14,7 +14,7 @@ describe('VoteComponent', () => {
 
     component.upVote();
 
-    //assert
+    //assertion part: 
     // expect(totalVotes).not.toBeNull(); //this is too generic, there could be a bug which doesnt pass the number in the event emitter
     expect(totalVotes).toBe(1);
   });

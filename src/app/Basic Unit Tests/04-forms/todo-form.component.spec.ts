@@ -23,5 +23,6 @@ describe('TodoFormComponent', () => {
     control.setValue('');
 
     expect(control.valid).toBe(false);
+    //there is no name set, name is mandatory so, we expect the the name FORM CONTROL to not be VALID
   });
 });

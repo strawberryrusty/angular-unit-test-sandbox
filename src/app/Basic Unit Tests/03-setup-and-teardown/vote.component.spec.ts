@@ -2,7 +2,7 @@ import { VoteComponent } from './vote.component';
 
 describe('VoteComponent', () => {
 
-  //arrange - where we initialise the system under test, so creating an instance of votecomponent
+  //ARRANGE - where we initialise the system under test, so creating an instance of votecomponent
   let component: VoteComponent;
   beforeEach(() => {  // we use this to initialise our components beforeEach test
     component = new VoteComponent();
@@ -19,7 +19,7 @@ describe('VoteComponent', () => {
 
   it('should increment totalVotes when upvoted', () => {
 
-    //Act - calling a method of function
+    //ACT - calling a method of function
     component.upVote();
     //assertion -
     expect(component.totalVotes).toBe(1);
@@ -28,9 +28,9 @@ describe('VoteComponent', () => {
   //each test should run in isolation (as if there arent any other test), here we don't want side effects with on test effecting another:
   it('should decrease totalVotes when downvoted', () => {
 
-    //Act - calling a method of function
+    //ACT - calling a method of function
     component.downVote();
-    //assertion -
+    //ASSERTION-
     expect(component.totalVotes).toBe(-1);
   });
 });
