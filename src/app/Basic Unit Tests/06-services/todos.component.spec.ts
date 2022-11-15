@@ -32,8 +32,8 @@ describe('TodosComponent', () => {
     component.ngOnInit();
 
     //assertion
-    expect(component.todos).toBe(faketodos);
-  });
+    expect(component.todos).toBe(faketodos);     //we are checking that what we have in the initialised 'todos' is the same as the fake
+  });                                           //todos from fetched from the service
 
   //so here, we setting the fake todos that we get from our service, and seeing if the component, sets the "todo" array to
   //the fake todo
