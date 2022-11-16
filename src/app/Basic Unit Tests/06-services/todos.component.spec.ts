@@ -38,20 +38,36 @@ describe('TodosComponent', () => {
   //so here, we setting the fake todos that we get from our service, and seeing if the component, sets the "todo" array to
   //the fake todo
 
-//   it('should call the server to save the changes when a new todo item is added', () => {
-//     let spy = spyOn(service, 'add').and.callFake(t => {
-//       return Observable.empty;
-//     });
+  //we are just testing here if the add action is called on the service when we do the add method on the component
 
-//   it('should add the new todo returned from the server', () => {
-//     let todo = {id: 1};
-//     let spy = spyOn(service, 'add').and.callFake(t => {
-//       return Observable.from([todo]);
-//     });
+    //arrange
+     it('should call the server to save the changes when a new todo item is added', () => {
+    let spy = spyOn(service, 'add').and.callFake(t => {                                         //we replicate the add, so add takes in argument t and then returns an observable
+      return Observable.empty;
+    });
 
-//     component.add();
+    //act
+    component.add();
 
-//     expect(spy).toHaveBeenCalled();
-//   });
-// }
+    //assertion
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+      //we want to see if the new todo that is returned from the server is added.
+
+    //arrange
+     it('should call the server to save the changes when a new todo item is added', () => {
+    let testTodo = {id: 1}
+    let spy = spyOn(service, 'add').and.callFake(t => {                                         //we replicate the add, so add takes in argument t and then returns an observable
+      return Observable.from([testTodo])
+    });
+
+    //act
+    component.add();
+
+    //assertion - we ensure that this this todo object which is returned from the server is in our todo's array, after we have called.
+    expect(component.todos.indexOf(testTodo)).toBeGreaterThan(-1);
+
+  });
 });
