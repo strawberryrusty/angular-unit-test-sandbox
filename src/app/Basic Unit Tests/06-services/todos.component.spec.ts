@@ -3,6 +3,8 @@ import { TodoService } from './todo.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/empty';
+import 'rxjs/add/observable/throw';
+import { throwError } from 'rxjs';
 
 
 describe('TodosComponent', () => {
@@ -59,9 +61,7 @@ describe('TodosComponent', () => {
     //arrange
      it('should call the server to save the changes when a new todo item is added', () => {
     let testTodo = {id: 1}
-    let spy = spyOn(service, 'add').and.callFake(t => {                                         //we replicate the add, so add takes in argument t and then returns an observable
-      return Observable.from([testTodo])
-    });
+    let spy = spyOn(service, 'add').and.returnValue(Observable.from([testTodo]));   //we replicate the add, so add takes in argument testTodo and then returns an observable, we do it without an arrow function
 
     //act
     component.add();
@@ -69,5 +69,19 @@ describe('TodosComponent', () => {
     //assertion - we ensure that this this todo object which is returned from the server is in our todo's array, after we have called.
     expect(component.todos.indexOf(testTodo)).toBeGreaterThan(-1);
 
+  });
+
+  //third test, if the service returns an error, check that that error is within the error property
+
+  //arrange
+  it('should set the message property if server returns an error when adding a new todo ', () => {
+    let error = 'error from the server';
+    let spy = spyOn(service, 'add').and.returnValue(Observable.throwError(error));
+
+  //act
+  component.add();
+
+  //assertion - we expect the component error message to be the error that is thrrown here;
+  expect(component.message).toBe(error);
   });
 });
